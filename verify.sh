@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-validDate=$(date +"%r")
-echo $validDate
+validTime=$(TZ=GMT date +"%r")
+echo $validTime
+
