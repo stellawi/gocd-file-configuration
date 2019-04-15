@@ -1,0 +1,33 @@
+format_version: 2
+environments:
+  pre-qa:
+    pipelines:
+      - configuration
+pipelines:
+  sample-node-js:
+    group: node-js-pipeline
+    lock_behavior: unlockWhenFinished
+    environment_variables:
+      PROJECT_ID: demo
+    materials:
+      nodejs:
+        git: https://github.com/stellawi/gocd-file-configuration.git
+    stages:
+      - build:
+          fetch_materials: true
+          keep_artifacts: true
+          clean_workspace: true
+          jobs:
+            verification:
+              elastic_profile_id: demo-app
+              tasks:
+                - exec:
+                    run_if: passed
+                    command: bash
+                    arguments:
+                    - -cl
+                    - ./verify.sh
+              artifacts:
+                - build:
+                    source: configuration.json
+                    destination: configuration/ 
