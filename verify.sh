@@ -8,7 +8,7 @@ popd
 
 validTime=$(TZ=GMT date +"%r")
 validVariable=$(cat $1 | jq '.environment')
-echo validVariable
+echo $validVariable
 
 if [[ $validVariable == "valid" ]];then
   echo "Hey, it is invalid"
