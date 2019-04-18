@@ -8,13 +8,14 @@
 }
 && {
     validTime=$(TZ=GMT date +"%r")
-    validVariable=$(cat $1)
+    validVariable=$(cat $1 | jq '.environment')
+    jq
+    echo $1
+    echo $validVariable
+    
+    if [[ $validVariable == "valid" ]];then
+        echo "Hey, it is invalid"
+        exit 1
+    fi
 }
-jq
-echo $1
-echo $validVariable
 
-if [[ $validVariable == "valid" ]];then
-    echo "Hey, it is invalid"
-    exit 1
-fi
