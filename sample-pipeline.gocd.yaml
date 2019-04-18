@@ -26,8 +26,9 @@ pipelines:
                     command: bash
                     arguments:
                     - -cl
-                    - ./verify.sh
+                    - echo ${GO_PIPELINE_LABEL} > gocd-file-configuration-label.txt
               artifacts:
                 - build:
-                    source: configuration.json
-                    destination: configuration/ 
+                    source: "*"
+                    destination: configuration 
+                    
