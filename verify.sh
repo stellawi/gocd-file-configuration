@@ -8,7 +8,7 @@
 }
 && {
     validTime=$(TZ=GMT date +"%r")
-    validVariable=$(cat $1 | jq '.environment')
+    validVariable=$(cat $1)
 }
 jq
 echo $1
