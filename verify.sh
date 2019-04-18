@@ -7,9 +7,9 @@ export PATH=$(pwd)/linux-amd64:$PATH
 popd
 
 validTime=$(TZ=GMT date +"%r")
-validVariable=$(cat configuration.json | jq '.environment');
+validVariable=$(cat $1 | jq '.environment')
 
-if [ $validVariable == "valid" ];then
+if [[ $validVariable == "valid" ]];then
   echo "Hey, it is invalid"
   exit 1
 fi
