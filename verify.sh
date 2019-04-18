@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
-su -
-apk update && apk add jq 
+
+pushd /tmp
+wget -O https://github.com/stedolan/jq/releases/download/jq-1.6/jq-1.6.tar.gz
+tar -xvzf jq-1.6.tar.gz
+export PATH=$(pwd)/linux-amd64:$PATH
+popd
 
 validTime=$(TZ=GMT date +"%r")
-echo $1
-{
-  validVariable=$(cat $1 | jq '.environment')
-  echo validVariable
-} || {
-  exit 1
-}
-
+validVariable=$(cat $1 | jq '.environment')
 
 if [[ $validVariable == "valid" ]];then
   echo "Hey, it is invalid"
