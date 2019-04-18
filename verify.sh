@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pushd /tmp
-wget -O https://github.com/stedolan/jq/releases/download/jq-1.6/jq-1.6.tar.gz
+wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-1.6.tar.gz
 tar -xvzf jq-1.6.tar.gz
 export PATH=$(pwd)/linux-amd64:$PATH
 popd
