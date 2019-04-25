@@ -8,7 +8,9 @@ echo $validVariable
 
 if [ "$validVariable" == "kubernetes" ]
 then
-    echo "Hey, it is invalid"
+    echo "Hey, it is for kubernetes"
+else
+    echo "Hey, it is for zip"
 fi
 
 
