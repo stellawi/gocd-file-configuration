@@ -7,8 +7,6 @@ pipelines:
   configuration:
     group: node-js-pipeline
     lock_behavior: unlockWhenFinished
-    environment_variables:
-      PROJECT_ID: demo
     materials:
       nodejs:
         git: https://github.com/stellawi/gocd-file-configuration.git
