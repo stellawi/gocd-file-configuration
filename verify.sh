@@ -5,7 +5,7 @@ validVariable=$(cat $1 |  grep "environment" | awk '{print $2}')
 
 if [[ $validVariable=="kubernetes" ]];then
     echo "Hey, it is invalid"
-    exit
+    exit 0
 fi
 
 
