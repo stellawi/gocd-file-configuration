@@ -25,6 +25,7 @@ pipelines:
                     command: bash
                     arguments:
                     - -cl
+                    - helm version
                     - echo ${GO_PIPELINE_LABEL} > gocd-file-configuration-label.txt
               artifacts:
                 - build:
