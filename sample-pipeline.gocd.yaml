@@ -17,7 +17,8 @@ pipelines:
           clean_workspace: true
           jobs:
             verification:
-              elastic_profile_id: demo-app
+              resources:
+                - local-agent
               tasks:
                 - exec:
                     run_if: passed
@@ -28,5 +29,5 @@ pipelines:
               artifacts:
                 - build:
                     source: "*"
-                    destination: configuration 
-                    
+                    destination: configuration
+
