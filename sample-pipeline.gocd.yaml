@@ -34,6 +34,4 @@ pipelines:
                   command: bash
                   arguments:
                     - -cl
-                    - helm version
                     - echo "Hello World"
-                    - echo ${GO_PIPELINE_LABEL} > gocd-file-configuration-label.txt
