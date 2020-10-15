@@ -1,15 +1,13 @@
 format_version: 9
 environments:
-  testing:
+  pre-qa:
     environment_variables:
       DEPLOYMENT: testing
-    secure_variables:
-      ENV_PASSWORD: "s&Du#@$xsSa"
     pipelines:
       - deploy-testing
 pipelines:
   deploy-testing: # definition of mypipe1 pipeline
-    group: mysamplegroup # note that the group name can contain only of alphanumeric & underscore characters
+    group: gocd-sample # note that the group name can contain only of alphanumeric & underscore characters
     display_order: 10
     parameters: # list of parameters that can be configured for a pipeline
       param1: value1
