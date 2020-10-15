@@ -1,34 +1,41 @@
-format_version: 2
+format_version: 9
 environments:
-  pre-qa:
+  testing:
+    environment_variables:
+      DEPLOYMENT: testing
+    secure_variables:
+      ENV_PASSWORD: "s&Du#@$xsSa"
     pipelines:
-      - configuration
+      - deploy-testing
 pipelines:
-  configuration:
-    group: node-js-pipeline
-    lock_behavior: unlockWhenFinished
+  deploy-testing: # definition of mypipe1 pipeline
+    group: mysamplegroup # note that the group name can contain only of alphanumeric & underscore characters
+    display_order: 10
+    parameters: # list of parameters that can be configured for a pipeline
+      param1: value1
     materials:
-      nodejs:
+      mygit: # this is the name of material, the name can contain only of alphanumeric & underscore characters
+        # keyword git says about type of material and url at once
         git: https://github.com/stellawi/gocd-file-configuration.git
-    stages:
-      - build:
-          fetch_materials: true
-          keep_artifacts: true
+        branch: master
+    stages: # list of stages in order
+      - build: # name of stage
           clean_workspace: true
           jobs:
-            verification:
+            job_name: # name of the job
               resources:
-                - local-agent
-              tasks:
-                - exec:
-                    run_if: passed
-                    command: bash
-                    arguments:
+               - local-agent
+              artifacts:
+               - build:
+                   source: "*"
+                   destination: configuration
+              tabs:
+                report: test-reports/index.html
+              tasks: # ordered list of tasks to execute in job csharp
+               - exec: # indicates type of task
+                  command: bash
+                  arguments:
                     - -cl
                     - helm version
+                    - echo "Hello World"
                     - echo ${GO_PIPELINE_LABEL} > gocd-file-configuration-label.txt
-              artifacts:
-                - build:
-                    source: "*"
-                    destination: configuration
-
